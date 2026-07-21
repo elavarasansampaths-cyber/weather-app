@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farm Map</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/animation.css" />
+  </head>
+  <body>
+    <div class="loader"><div class="spinner"></div></div>
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><i class="fa-solid fa-seedling me-2"></i>SIFIS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="sensors.html">Sensors</a></li>
+            <li class="nav-item"><a class="nav-link" href="crop.html">Crop Recommendation</a></li>
+            <li class="nav-item"><a class="nav-link" href="disease.html">Disease Detection</a></li>
+            <li class="nav-item"><a class="nav-link" href="weather.html">Weather</a></li>
+            <li class="nav-item"><a class="nav-link" href="irrigation.html">Smart Irrigation</a></li>
+            <li class="nav-item"><a class="nav-link" href="market.html">Market Prices</a></li>
+            <li class="nav-item"><a class="nav-link active" href="map.html">Farm Map</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item"><button class="btn btn-sm btn-outline-primary ms-3" data-theme-toggle aria-pressed="false"><i class="fa-solid fa-moon"></i></button></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero-section py-5">
+      <div class="container">
+        <div class="text-center reveal">
+          <div class="badge-soft mb-3">Farm Map</div>
+          <h1 class="hero-title">Explore field assets and nearby services</h1>
+          <p class="hero-subtitle">Visualize the current farm, water source, clinic, office, market, and weather station.</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-lg-8 reveal">
+              <div class="map-card p-3">
+                <div id="map" class="map-shell"></div>
+              </div>
+            </div>
+            <div class="col-lg-4 reveal">
+              <div class="glass-card p-4">
+                <h5 class="mb-3">Map Layers</h5>
+                <ul class="list-unstyled">
+                  <li class="mb-2"><i class="fa-solid fa-location-dot text-success me-2"></i>Current Farm</li>
+                  <li class="mb-2"><i class="fa-solid fa-droplet text-success me-2"></i>Water Source</li>
+                  <li class="mb-2"><i class="fa-solid fa-hospital text-success me-2"></i>Hospital</li>
+                  <li class="mb-2"><i class="fa-solid fa-building-columns text-success me-2"></i>Agriculture Office</li>
+                  <li class="mb-2"><i class="fa-solid fa-shop text-success me-2"></i>Market</li>
+                  <li class="mb-2"><i class="fa-solid fa-cloud-sun text-success me-2"></i>Weather Station</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer mt-5">
+      <div class="container"><div class="text-center small">© <span data-year></span> SIFIS</div></div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const map = L.map('map').setView([11.0168, 76.9558], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        const markers = [
+          { name: 'Current Farm', coords: [11.0168, 76.9558] },
+          { name: 'Water Source', coords: [11.0230, 76.9605] },
+          { name: 'Hospital', coords: [11.0120, 76.9480] },
+          { name: 'Agriculture Office', coords: [11.0210, 76.9700] },
+          { name: 'Market', coords: [11.0090, 76.9650] },
+          { name: 'Weather Station', coords: [11.0180, 76.9490] }
+        ];
+        markers.forEach((item) => L.marker(item.coords).addTo(map).bindPopup(item.name));
+      });
+    </script>
+  </body>
+</html>

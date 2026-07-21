@@ -1,0 +1,45 @@
+@media (max-width: 991px) {
+  .hero-section {
+    padding-top: 110px;
+  }
+
+  .hero-visual {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 70px 0;
+  }
+
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .section-title {
+    font-size: 1.65rem;
+  }
+
+  .dashboard-hero,
+  .weather-hero {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1.05rem;
+  }
+
+  .btn-primary,
+  .btn-outline-primary {
+    width: 100%;
+    margin-bottom: 0.7rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+}
